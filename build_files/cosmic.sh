@@ -193,12 +193,12 @@ UNINSTALL_PACKAGES=(
 dnf5 remove -y "${UNINSTALL_PACKAGES[@]}"
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
 
-# Starship Shell Prompt
-curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz"
-tar -xzf /tmp/starship.tar.gz -C /tmp
-install -c -m 0755 /tmp/starship /usr/bin
-# shellcheck disable=SC2016
-echo 'eval "$(starship init bash)"' >>/etc/bashrc
+## Starship Shell Prompt
+#curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz"
+#tar -xzf /tmp/starship.tar.gz -C /tmp
+#install -c -m 0755 /tmp/starship /usr/bin
+## shellcheck disable=SC2016
+#echo 'eval "$(starship init bash)"' >>/etc/bashrc
 
 # Systemd
 systemctl enable cosmic-greeter

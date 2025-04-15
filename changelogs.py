@@ -7,7 +7,7 @@ from typing import Any
 import re
 from collections import defaultdict
 
-REGISTRY = "docker://ghcr.io/m2giles/"
+REGISTRY = "docker://ghcr.io/alistairporter/"
 
 IMAGE_MATRIX = {
     "image": ["aurora", "cosmic", "bluefin", "ucore"],
@@ -42,9 +42,9 @@ OTHER_NAMES = {
 }
 
 COMMITS_FORMAT = "### Commits\n| Hash | Subject |\n| --- | --- |{commits}\n\n"
-COMMIT_FORMAT = "\n| **[{short}](https://github.com/m2giles/m2os/commit/{githash})** | {subject} |"
+COMMIT_FORMAT = "\n| **[{short}](https://github.com/alistairporter/ublue-custom/commit/{githash})** | {subject} |"
 
-CHANGELOG_TITLE = "m2os {pretty}"
+CHANGELOG_TITLE = "ublue-custom {pretty}"
 CHANGELOG_FORMAT = """\
 {handwritten}
 
@@ -101,22 +101,22 @@ def get_manifests(imgs):
     j = 0
     for img in imgs:
         output = None
-        print(f"Getting m2os:{img} manifest ({j+1}/{len(imgs)}).")
+        print(f"Getting ublue-custom:{img} manifest ({j+1}/{len(imgs)}).")
         for i in range(RETRIES):
             try:
                 output = subprocess.run(
-                    ["skopeo", "inspect", REGISTRY + "m2os" + ":" + img],
+                    ["skopeo", "inspect", REGISTRY + "ublue-custom" + ":" + img],
                     check=True,
                     stdout=subprocess.PIPE,
                 ).stdout
                 break
             except subprocess.CalledProcessError:
                 print(
-                    f"Failed to get m2os:{img}, retrying in {RETRY_WAIT} seconds ({i+1}/{RETRIES})"
+                    f"Failed to get ublue-custom:{img}, retrying in {RETRY_WAIT} seconds ({i+1}/{RETRIES})"
                 )
                 time.sleep(RETRY_WAIT)
         if output is None:
-            print(f"Failed to get m2os:{img}, skipping")
+            print(f"Failed to get ublue-custom:{img}, skipping")
             continue
         out[img] = json.loads(output)
         j += 1
@@ -490,3 +490,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

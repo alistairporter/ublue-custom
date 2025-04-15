@@ -1,5 +1,5 @@
 ---
-name: Build m2os Images
+name: Build ublue-custom Images
 on: # yamllint disable-line rule:truthy rule:comments
   workflow_call:
     inputs:

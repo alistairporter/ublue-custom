@@ -7,8 +7,8 @@ if [[ "${IMAGE}" =~ cosmic|ucore ]]; then
 {
   "image-name": "",
   "image-flavor": "",
-  "image-vendor": "m2giles",
-  "image-ref": "ostree-image-signed:docker://ghcr.io/m2giles/m2os",
+  "image-vendor": "alistairporter",
+  "image-ref": "ostree-image-signed:docker://ghcr.io/alistairporter/ublue-custom",
   "image-tag": "",
   "base-image-name": "",
   "fedora-version": ""
@@ -38,10 +38,10 @@ if [[ "$IMAGE" =~ nvidia ]]; then
 fi
 
 # Branding
-cat <<<"$(jq ".\"image-name\" |= \"m2os\" |
+cat <<<"$(jq ".\"image-name\" |= \"ublue-custom\" |
               .\"image-flavor\" |= \"${image_flavor}\" |
-              .\"image-vendor\" |= \"m2giles\" |
-              .\"image-ref\" |= \"ostree-image-signed:docker://ghcr.io/m2giles/m2os\" |
+              .\"image-vendor\" |= \"alistairporter\" |
+              .\"image-ref\" |= \"ostree-image-signed:docker://ghcr.io/alistairporter/ublue-custom\" |
               .\"image-tag\" |= \"${IMAGE}${BETA:-}\" |
               .\"base-image-name\" |= \"${base_image}\" |
               .\"fedora-version\" |= \"$(rpm -E %fedora)\"" \

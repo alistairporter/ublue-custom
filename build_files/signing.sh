@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+#
+# https://github.com/m2Giles/m2os/blob/main/build_files/signing.sh
+#
+
 set ${SET_X:+-x} -eou pipefail
 
 # Signing
@@ -12,12 +16,12 @@ if [ -f /usr/etc/containers/policy.json ]; then
 fi
 
 cat <<<"$(jq '.transports.docker |=. + {
-   "ghcr.io/m2giles/m2os": [
+   "ghcr.io/alistairporter": [
     {
         "type": "sigstoreSigned",
         "keyPaths": [
-            "/etc/pki/containers/m2os.pub",
-            "/etc/pki/containers/m2os-backup.pub"
+            "/etc/pki/containers/alistairporter.pub",
+            "/etc/pki/containers/alistairporter-backup.pub"
         ],
         "signedIdentity": {
             "type": "matchRepository"
@@ -26,12 +30,12 @@ cat <<<"$(jq '.transports.docker |=. + {
 ]}' <"/etc/containers/policy.json")" >"/tmp/policy.json"
 
 cp /tmp/policy.json /etc/containers/policy.json
-cp /ctx/cosign.pub /etc/pki/containers/m2os.pub
-cp /ctx/cosign-backup.pub /etc/pki/containers/m2os-backup.pub
+cp /ctx/cosign.pub /etc/pki/containers/alistairporter.pub
+cp /ctx/cosign-backup.pub /etc/pki/containers/alistairporter-backup.pub
 
-tee /etc/containers/registries.d/m2os.yaml <<EOF
+tee /etc/containers/registries.d/alistairporter.yaml <<EOF
 docker:
-  ghcr.io/m2giles/m2os:
+  ghcr.io/alistairporter:
     use-sigstore-attachments: true
 EOF
 
