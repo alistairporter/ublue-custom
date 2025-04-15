@@ -1,8 +1,8 @@
 # Constants
 
-repo_image_name := "m2os"
-repo_name := "m2giles"
-username := "m2"
+repo_image_name := "ublue-custom"
+repo_name := "alistairporter"
+username := "alistairporter"
 IMAGE_REGISTRY := "ghcr.io/" + repo_name
 FQ_IMAGE_NAME := IMAGE_REGISTRY + "/" + repo_image_name
 images := '(

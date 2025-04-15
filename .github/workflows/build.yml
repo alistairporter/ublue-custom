@@ -1,5 +1,5 @@
 ---
-name: Build m2os
+name: Build ublue-custom
 on: # yamllint disable-line rule:truthy rule:comments
   schedule:
     # yamllint disable-line rule:comments
