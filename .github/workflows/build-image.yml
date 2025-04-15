@@ -82,13 +82,13 @@ jobs:
         shell: bash
         run: |
           set -eou pipefail
-          just login-to-ghcr ${{ github.actor }} ${{ github.token }}
+          sudo $(which just) login-to-ghcr ${{ github.actor }} ${{ github.token }}
           push_args=(
             ${{ matrix.image }}
             false
             "docker://${{ steps.registry_case.outputs.lowercase }}"
           )
-          just push-to-registry "${push_args[@]}"
+          sudo $(which just) push-to-registry "${push_args[@]}"
       - name: Sign Image with Cosign
         id: sign
         if: >-
