@@ -99,7 +99,7 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
         shell: bash
         run: |
-          just cosign-sign "${{ steps.push.outputs.digest }}"
+          sudo $(which just) cosign-sign "${{ steps.push.outputs.digest }}"
       - name: Upload OCI Artifact
         # yamllint disable-line rule:line-length rule:comments
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

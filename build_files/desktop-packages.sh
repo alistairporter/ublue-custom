@@ -27,7 +27,7 @@ LAYERED_PACKAGES=(
     adw-gtk3-theme
     sunshine
     webapp-manager
-}
+)
 
 dnf5 install --setopt=install_weak_deps=False -y "${LAYERED_PACKAGES[@]}"
 
