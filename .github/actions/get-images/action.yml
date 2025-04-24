@@ -22,17 +22,14 @@ runs:
         # Add Images
         case "${{ inputs.image_flavor }}" in
         "Bazzite")
-          images+=("bazzite" "bazzite-nvidia" "bazzite-nvidia-open")
-          images+=("bazzite-gnome" "bazzite-gnome-nvidia" "bazzite-gnome-nvidia-open")
-          images+=("bazzite-deck" "bazzite-deck-gnome")
+          images+=("bazzite" "bazzite-deck" "bazzite-nvidia")
+          images+=("bazzite-gnome" "bazzite-deck-gnome" "bazzite-gnome-nvidia")
           ;;
         "Bluefin")
-          images+=("bluefin-dx" "bluefin-dx-nvidia" "bluefin-dx-nvidia-open")
-          images+=("bluefin-gdx" "bluefin-lts")
+          images+=("bluefin" "bluefin-nvidia")
           ;;
         "Aurora")
-          images+=("aurora" "aurora-nvidia" "aurora-nvidia-open")
-          images+=("aurora-dx" "aurora-dx-nvidia" "aurora-dx-nvidia-open")
+          images+=("aurora" "aurora-nvidia")
           ;;
         esac
 

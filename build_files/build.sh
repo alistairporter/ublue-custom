@@ -1,24 +1,44 @@
-#!/bin/bash
+#!/usr/bin/bash
 
-set -ouex pipefail
+set -eou pipefail
 
-### Install packages
+#Common
+echo "::group:: ===Remove CLI Wrap==="
+/ctx/remove-cliwrap.sh
+echo "::endgroup::"
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
+# Changes
+case "${IMAGE}" in
+"aurora"* | "bluefin"*)
+    echo "::group:: ===Steam Packages==="
+    /ctx/desktop-steam.sh
+    echo "::endgroup::"
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+    echo "::group:: ===Desktop Packages==="
+    /ctx/desktop-packages.sh
+    echo "::endgroup::"
+    ;;
+"bazzite"*)
+    echo "::group:: ===Desktop Packages==="
+    /ctx/desktop-packages.sh
+    echo "::endgroup::"
+    ;;
+esac
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+# Common
+echo "::group:: ===Server Packages==="
+/ctx/server-packages.sh
+echo "::endgroup::"
 
-#### Example for enabling a System Unit File
+#echo "::group:: ===Branding Changes==="
+#/ctx/branding.sh
+#echo "::endgroup::"
 
-systemctl enable podman.socket
+echo "::group:: ===Container Signing==="
+/ctx/signing.sh
+echo "::endgroup::"
+
+# Clean Up
+echo "::group:: ===Cleanup==="
+/ctx/cleanup.sh
+echo "::endgroup::"
