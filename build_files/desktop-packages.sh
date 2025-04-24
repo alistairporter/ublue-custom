@@ -44,7 +44,7 @@ $DNF install --setopt=install_weak_deps=False -y \
     lm_sensors \
     ltrace \
     make \
-    nerd-fonts \
+    nextcloud-desktop \
     patch \
     pipx \
     powerline-fonts \
