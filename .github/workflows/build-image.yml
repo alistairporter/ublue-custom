@@ -53,11 +53,12 @@ jobs:
         run: |
           # note: if disabling rechunker, must also disable sudo call
           # just build ${{ matrix.image }}
-          sudo just build ${{ matrix.image }}
-      - name: Rechunk Image
-        shell: bash
-        run: |
-          sudo just rechunk ${{ matrix.image }}
+          #sudo just build ${{ matrix.image }}
+          just build ${{ matrix.image }}
+      #- name: Rechunk Image
+      #  shell: bash
+      #  run: |
+      #    sudo just rechunk ${{ matrix.image }}
       - name: Load and Tag Image
         shell: bash
         run: |
