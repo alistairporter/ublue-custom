@@ -15,6 +15,13 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
+
+if [ -f /etc/centos-release ]; then
+    # for EL, enable EPEL and EPEL testing repos
+    $DNF config-manager --set-enabled epel
+    $DNF config-manager --set-enabled epel-testing
+fi
+
 # common packages
 $DNF install --setopt=install_weak_deps=False -y \
     btop \
@@ -44,7 +51,7 @@ $DNF install --setopt=install_weak_deps=False -y \
     lm_sensors \
     ltrace \
     make \
-    nextcloud-desktop \
+    nextcloud-client \
     patch \
     pipx \
     powerline-fonts \
