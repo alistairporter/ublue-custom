@@ -7,6 +7,10 @@ echo "::group:: ===Remove CLI Wrap==="
 /ctx/remove-cliwrap.sh
 echo "::endgroup::"
 
+echo "::group:: ===Nix Stuff==="
+/ctx/nix-stuff.sh
+echo "::endgroup::"
+
 # Changes
 case "${IMAGE}" in
 "aurora"* | "bluefin"*)
