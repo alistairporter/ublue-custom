@@ -22,8 +22,8 @@ cat <<<"$(jq '.transports.docker |=. + {
     }
 ]}' <"/etc/containers/policy.json")" >"/tmp/policy.json"
 cp /tmp/policy.json /etc/containers/policy.json
-cp /ctx/cosign.pub /etc/pki/containers/bos.pub
-tee /etc/containers/registries.d/bos.yaml <<EOF
+cp /ctx/cosign.pub /etc/pki/containers/ublue-custom.pub
+tee /etc/containers/registries.d/ublue-custom.yaml <<EOF
 docker:
   ghcr.io/alistairporter/ublue-custom:
     use-sigstore-attachments: true
